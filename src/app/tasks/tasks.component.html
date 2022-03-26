@@ -1,0 +1,8 @@
+<input [(ngModel)]="newTask" type="text" /> -
+<button (click)="addToList()">Adicionar</button>
+
+<div class="lista" *ngFor="let x of tasks; let index = index">
+  <div>{{ x }}</div>
+
+  <input (click)="deleteTask(index)" type="button" value="Delete" />
+</div>
