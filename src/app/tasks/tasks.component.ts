@@ -6,24 +6,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tasks.component.css'],
 })
 export class TasksComponent implements OnInit {
-  public tasks = [];
+  tasks: String[] = [];
 
-  public newTask;
+  newTask: any;
 
-  public addToList() {
+  addToList() {
     if (this.newTask == '') {
     } else {
       this.tasks.push(this.newTask);
       this.newTask = '';
+      localStorage.setItem('Lista', JSON.stringify(this.tasks));
     }
   }
-  public deleteTask(index) {
+  deleteTask(index) {
     this.tasks.splice(index, 1);
   }
 
-  NossaLista = localStorage;
-
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.tasks = [JSON.parse(localStorage.getItem('Lista'))];
+    
+  }
 }
